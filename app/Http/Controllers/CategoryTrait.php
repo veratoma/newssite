@@ -8,7 +8,7 @@ trait CategoryTrait
     public function getCategory(): array
     {
         $category = [];
-        $quantityCategory = 6;
+        $quantityCategory = 7;
         for ($i = 1; $i < $quantityCategory; $i++) {
             $category[$i] = [
                 'id' => $i,

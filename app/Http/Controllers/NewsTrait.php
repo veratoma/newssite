@@ -8,7 +8,7 @@ trait NewsTrait
     public function getNewsList(int $categoryid): array
     {
         $news = [];
-        $quantityNews = 10;
+        $quantityNews = 9;
 
         for ($i = 1; $i < $quantityNews; $i++) {
             $news[$i] = [

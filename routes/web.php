@@ -4,6 +4,7 @@ use App\Http\Controllers\GreetingsController;
 use \App\Http\Controllers\NewsController;
 use \App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\Admin\IndexController as AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// admin routes
+
+Route::group (['prefix'=> 'admin'], static function() {
+
+    Route::get('/', AdminController::class)->name('admin.index');
+    });
+
 Route::get('/hello', [GreetingsController::class,'index'])->name('hello');
 
 // /news/1/show        - Страница вывода конкретной новости
@@ -30,3 +38,4 @@ Route::get('/category', [CategoryController::class,'index'])->name('category');
 
 // /category/2/show     - Страница вывода новостей по конкретной категории
 Route::get('/category/{categoryid}/show', [CategoryController::class,'show'])->where(name:'categoryid', expression:'\d+')->name('category.show');
+

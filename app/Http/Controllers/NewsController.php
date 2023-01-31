@@ -10,10 +10,13 @@ use Illuminate\Http\Request;
 class NewsController extends Controller
 {
     use NewsTrait;
+    
 
      public function show(int $id)  
      {
-        return  $this->getNews($id);
+        return \view('news.show', ['news' => $this->getNews($id)]);
      }  
+
+     
 }
  
