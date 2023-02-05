@@ -5,6 +5,9 @@ use \App\Http\Controllers\NewsController;
 use \App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\IndexController as AdminController;
+use \App\Http\Controllers\Admin\ConnectionController as AdminConnectionController;
+use \App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use \App\Http\Controllers\Admin\NewsController as AdminNewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,13 @@ Route::get('/', function () {
 Route::group (['prefix'=> 'admin'], static function() {
 
     Route::get('/', AdminController::class)->name('admin.index');
+
+    Route::resource(name:'connection',controller: AdminConnectionController::class);
+
+    Route::resource(name:'order',controller: AdminOrderController::class);
+
+
+    Route::resource(name:'news', controller:AdminNewsController::class);
     });
 
 Route::get('/hello', [GreetingsController::class,'index'])->name('hello');

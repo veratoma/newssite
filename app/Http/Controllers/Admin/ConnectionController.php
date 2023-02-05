@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 
-class NewsController extends Controller
+class ConnectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +15,7 @@ class NewsController extends Controller
      */
     public function index():View
     {
-        return \view('admin.news.index');
+        return \view('admin.connection.index');
     }
 
     /**
@@ -27,7 +25,7 @@ class NewsController extends Controller
      */
     public function create():View
     {
-        return \view('admin.news.create');
+        return \view('admin.connection.create');
     }
    
     /**
@@ -37,10 +35,8 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
-        return response() ->json ($request->only(['title', 'author', 'description']));
-      
+        dd ($request->input(key: 'firstName'));
     }
 
     /**
@@ -88,3 +84,4 @@ class NewsController extends Controller
         //
     }
 }
+
