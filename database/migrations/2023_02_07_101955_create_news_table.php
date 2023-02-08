@@ -1,8 +1,10 @@
 <?php
 declare(strict_types=1);
+use App\Enums\NewsStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+
 
 return new class extends Migration
 {
@@ -11,15 +13,14 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up(): void
+    public function up():void
     {
-        Schema::create('users', static function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('title', length: 191);
+            $table->text ('description') ->nullable();
+            $table->string ('autor', length: 191 )->default (value: 'Админ');
+            $table->enum('status',NewsStatus::all());
             $table->timestamps();
         });
     }
@@ -29,8 +30,10 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down(): void
+    public function down():void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('news');
     }
 };
+
+

@@ -12,7 +12,7 @@
           </div>
 
           <div>
-            <form method="post" action = "{{ route ('connection.store') }}">
+            <form method="post" action = "{{ route ('admin.connection.store') }}">
             @csrf
             <div class = "form-group">
             <p>Имя <input type="text" id="firstName"  name="firstName" class="form-control"/></p>
@@ -22,7 +22,7 @@
            
           
            <div>
-            <form method="post" action = "{{ route ('connection.store') }}"></form>
+            <form method="post" action = "{{ route ('admin.connection.store') }}"></form>
             <div class = "form-group">
                 <label for="description">Отзыв</label>
                 <textarea id= "description" name = "description" class="form-control"></textarea>

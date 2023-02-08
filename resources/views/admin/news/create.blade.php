@@ -12,7 +12,7 @@
           </div>
 
           <div>
-            <form method="post" action="{{ route('news.store') }}">
+            <form method="post" action="{{ route('admin.news.store') }}">
             @csrf
             <div class = "form-group">
                 <label for="title">Заголовок</label>
@@ -21,14 +21,14 @@
 
            
           <div>
-            <form method="post" action = "{{ route ('news.store') }}"></form>
+            <form method="post" action = "{{ route ('admin.news.store') }}"></form>
             <div class = "form-group">
                 <label for="author">Автор</label>
                 <input type="text" id= "author" name = "author" class="form-control">
            </div>
 
            <div>
-            <form method="post" action = "{{ route ('news.store') }}"></form>
+            <form method="post" action = "{{ route ('admin.news.store') }}"></form>
             <div class = "form-group">
                 <label for="description">Описание</label>
                 <textarea class="form-control" id= "description" name = "description" ></textarea>

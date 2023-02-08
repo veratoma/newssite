@@ -26,9 +26,9 @@ Route::get('/', function () {
 
 // admin routes
 
-Route::group (['prefix'=> 'admin'], static function() {
+Route::group (['prefix'=> 'admin', 'as' => 'admin.'], static function() {
 
-    Route::get('/', AdminController::class)->name('admin.index');
+    Route::get('/', AdminController::class)->name('index');
 
     Route::resource(name:'connection',controller: AdminConnectionController::class);
 

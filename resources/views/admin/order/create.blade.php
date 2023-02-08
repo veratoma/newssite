@@ -14,7 +14,7 @@
           </div>
 
           <div>
-            <form method="post" action = "{{ route ('order.store') }}">
+            <form method="post" action = "{{ route ('admin.order.store') }}">
               @csrf
             <div class = "form-group">
            
@@ -25,7 +25,7 @@
 
      
           <div>
-            <form method="post" action = "{{ route ('order.store') }}"></form>
+            <form method="post" action = "{{ route ('admin.order.store') }}"></form>
             <div class = "form-group">
                 <label for="phone">Телефон</label>
                 <input type="tel" id= "phone" name = "phone" class="form-control" pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}">
@@ -35,7 +35,7 @@
         
 
        <div>
-            <form method="post" action = "{{ route ('order.store') }}"></form>
+            <form method="post" action = "{{ route ('admin.order.store') }}"></form>
             <div class = "form-group">
                 <label for="email">Email</label>
                 <input type="email" id= "email" name = "email" class="form-control" >
@@ -44,7 +44,7 @@
 
 
            <div>
-            <form method="post" action = "{{ route ('order.store') }}"></form>
+            <form method="post" action = "{{ route ('admin.order.store') }}"></form>
             <div class = "form-group">
                 <label for="description">Комментарии</label>
                 <textarea id= "description" name = "description" class="form-control"></textarea>
