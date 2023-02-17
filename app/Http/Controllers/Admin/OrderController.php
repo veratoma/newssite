@@ -13,7 +13,7 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index():View
+    public function index(): View
     {
         return \view('admin.order.index');
     }
@@ -23,11 +23,11 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create():View
+    public function create(): View
     {
         return \view('admin.order.create');
     }
-   
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,7 +36,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        dd ($request->only(['email', 'firstName']));
+        dd($request->only(['email', 'firstName']));
     }
 
     /**

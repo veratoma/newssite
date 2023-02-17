@@ -17,7 +17,7 @@ class NewsControllerTest extends TestCase
      */
     public function testIndexSuccessStatus(): void
     {
-        $response = $this->get(route(name: 'admin.news.index'));
+        $response = $this->get(route(name: 'admin.categories.index'));
 
         $response->assertStatus(200);
     }
@@ -25,20 +25,20 @@ class NewsControllerTest extends TestCase
 
     public function testCreateSuccessStatus(): void
     {
-        $response = $this->get(route(name: 'admin.news.create'));
+        $response = $this->get(route(name: 'admin.categories.create'));
 
         $response->assertStatus(200);
     }
 
 
     public function testCreateSaveSuccessDate(): void
+
     {
         $data = [
             'title' => \fake()->jobTitle(),
-            'author' => \fake()->userName(),
             'description' => \fake()->text(100),
         ];
-        $response = $this->post(route(name: 'admin.news.store'), $data);
+        $response = $this->post(route(name: 'admin.categories.store'), $data);
 
         $response->assertStatus(200)->json($data);
     }
@@ -49,10 +49,10 @@ class NewsControllerTest extends TestCase
     {
 
         $data = [
-            'author' => \fake()->userName(),
+
             'description' => \fake()->text(100),
         ];
-        $response = $this->post(route(name: 'admin.news.store'), $data);
+        $response = $this->post(route(name: 'admin.categories.store'), $data);
 
         $response->assertRedirect(url: 'http://localgost');
     }

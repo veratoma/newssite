@@ -8,21 +8,30 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Models\News;
+use App\QueryBuilders\NewsQueryBuilder;
+use App\Models\Category;
+use App\QueryBuilders\CategoriesQueryBuilder;
+use App\Enums\NewsStatus;
+
 
 class NewsController extends Controller
+
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index():View
+    public function index(NewsQueryBuilder $newsQueryBuilder): View
     {
-        $model = new News();
-        $newsList = $model -> getNews();
-       
+        $newsList = $newsQueryBuilder->getNewsWithPagination();
+
+
+
         return \view('admin.news.index', [
+
             'newsList' => $newsList,
         ]);
     }
@@ -31,23 +40,41 @@ class NewsController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     * 
      */
-    public function create():View
+
+
+    public function create(CategoriesQueryBuilder $categoriesQueryBuilder): View
     {
-        return \view('admin.news.create');
+        $categoriesList = $categoriesQueryBuilder->getCollection();
+        $statuses =  NewsStatus::all();
+
+        return \view('admin.news.create', [
+            'categoriesList' => $categoriesList,
+            'statuses' => $statuses
+        ]);
     }
-   
+
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function store(Request $request)
-
+    public function store(Request $request): RedirectResponse
     {
-        return response() ->json ($request->only(['title', 'author', 'description']));
-      
+        $request->validate([
+            'title' => 'required',
+        ]);
+
+        $news = new News($request->except('_token', 'categories_id'));
+
+        if ($news->save()) {
+            return \redirect()->route('admin.news.index')->with('succes', 'Новость успешно добавлена');
+        }
+        return \back()->with('error', 'Не удалось сохранить запись');
     }
 
     /**
@@ -67,9 +94,15 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(News $news, CategoriesQueryBuilder $categoriesQueryBuilder): View
     {
-        //
+
+
+        return \view('admin.news.edit', [
+            'news' => $news,
+            'categoriesList' => $categoriesQueryBuilder->getCollection(),
+            'statuses' => NewsStatus::all(),
+        ]);
     }
 
     /**
@@ -79,9 +112,14 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, News $news): RedirectResponse
     {
-        //
+        $news = $news->fill($request->except('_token', 'categories_id'));
+
+        if ($news->save()) {
+            return \redirect()->route('admin.news.index')->with('succes', 'Новость успешно добавлена');
+        }
+        return \back()->with('error', 'Не удалось сохранить запись');
     }
 
     /**

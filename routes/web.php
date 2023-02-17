@@ -8,6 +8,7 @@ use \App\Http\Controllers\Admin\IndexController as AdminController;
 use \App\Http\Controllers\Admin\ConnectionController as AdminConnectionController;
 use \App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use \App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use \App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,8 @@ Route::group (['prefix'=> 'admin', 'as' => 'admin.'], static function() {
 
     Route::resource(name:'order',controller: AdminOrderController::class);
 
-
     Route::resource(name:'news', controller:AdminNewsController::class);
+    Route::resource(name:'categories', controller:AdminCategoryController::class);
     });
 
 Route::get('/hello', [GreetingsController::class,'index'])->name('hello');

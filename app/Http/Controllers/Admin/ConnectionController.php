@@ -13,7 +13,7 @@ class ConnectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index():View
+    public function index(): View
     {
         return \view('admin.connection.index');
     }
@@ -23,11 +23,11 @@ class ConnectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create():View
+    public function create(): View
     {
         return \view('admin.connection.create');
     }
-   
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,7 +36,7 @@ class ConnectionController extends Controller
      */
     public function store(Request $request)
     {
-        dd ($request->input(key: 'firstName'));
+        dd($request->input(key: 'firstName'));
     }
 
     /**
@@ -84,4 +84,3 @@ class ConnectionController extends Controller
         //
     }
 }
-

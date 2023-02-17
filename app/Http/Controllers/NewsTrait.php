@@ -1,6 +1,6 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 namespace App\Http\Controllers;
 
 trait NewsTrait
@@ -33,5 +33,4 @@ trait NewsTrait
             'created_at' => \now()->format('d-m-Y H:i'),
         ];
     }
-
 }
